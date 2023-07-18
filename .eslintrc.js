@@ -26,7 +26,7 @@ module.exports = {
   ],
   rules: {
     'react/prop-types': 'off',
-    'prettier/prettier': ['error', {}, { usePrettierrc: true }], // Use our .prettierrc file as source
+    'prettier/prettier': ['error', {}, {usePrettierrc: true}], // Use our .prettierrc file as source
     'react/react-in-jsx-scope': 'off',
     'jsx-a11y/anchor-is-valid': [
       'error',

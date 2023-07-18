@@ -8,9 +8,9 @@ const Navigation = () => {
   return (
     <section className="container mx-auto">
       <nav className="relative px-6 py-6 flex justify-between items-center bg-white">
-        <a className="text-3xl font-bold leading-none" href="/">
+        <Link className="text-3xl font-bold leading-none" href="/">
           MakersMatch
-        </a>
+        </Link>
         <div className="lg:hidden">
           <button
             onClick={() => setNavOpen(true)}
@@ -26,9 +26,9 @@ const Navigation = () => {
         </div>
         <ul className="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
           <li>
-            <a className="text-sm text-gray-400 hover:text-gray-500" href="/">
+            <Link className="text-sm text-gray-400 hover:text-gray-500" href="/">
               Start
-            </a>
+            </Link>
           </li>
         </ul>
         <Link
@@ -41,9 +41,9 @@ const Navigation = () => {
         <div className="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
         <nav className="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto">
           <div className="flex items-center mb-8">
-            <a className="mr-auto text-3xl font-bold leading-none" href="/">
+            <Link className="mr-auto text-3xl font-bold leading-none" href="/">
               MakersMatch
-            </a>
+            </Link>
             <button onClick={() => setNavOpen(false)} className="navbar-close">
               <svg
                 className="h-6 w-6 text-gray-400 cursor-pointer hover:text-gray-500"
@@ -62,11 +62,11 @@ const Navigation = () => {
           <div>
             <ul>
               <li className="mb-1">
-                <a
+                <Link
                   className="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded"
                   href="/">
                   Start
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

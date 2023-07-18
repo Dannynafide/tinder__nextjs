@@ -18,14 +18,14 @@ export default function Login() {
               </div>
               <form action="">
                 <div className="text-center">
-                  <a
+                  <Link
                     className="mt-8 mb-4 p-4 flex justify-center items-center border rounded hover:bg-gray-50"
                     href="/">
                     <img className="mr-4 w-6" src="/github.svg" alt="" />
                     <span className="text-xs text-gray-500 font-bold">
                       Sign In with your GitHub
                     </span>
-                  </a>
+                  </Link>
                 </div>
               </form>
             </div>
