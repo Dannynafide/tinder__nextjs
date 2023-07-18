@@ -2,26 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+.skew {
+  display: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.skewed-top-right .skew-top.mr-for-radius {
+  display: block;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.skewed-top-left .skew-top.ml-for-radius {
+  display: block;
+}
+
+.skewed-bottom-right .skew-bottom.mr-for-radius {
+  display: block;
+}
+
+.skewed-bottom-left .skew-bottom.ml-for-radius {
+  display: block;
+}
+
+.skewed-top-right .radius-for-skewed {
+  border-top-right-radius: 6rem;
+}
+
+.skewed-top-left .radius-for-skewed {
+  border-top-left-radius: 6rem;
+}
+
+.skewed-bottom-right .radius-for-skewed {
+  border-bottom-right-radius: 6rem;
+}
+
+.skewed-bottom-left .radius-for-skewed {
+  border-bottom-left-radius: 6rem;
 }
