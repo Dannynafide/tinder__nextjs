@@ -1,6 +1,26 @@
+import {signIn, useSession} from 'next-auth/react';
 import Link from 'next/link';
+import {useRouter} from 'next/router';
+import {useEffect, useState} from 'react';
 
 export default function Login() {
+  const [signing, setSigning] = useState(false);
+  const {data: session, status} = useSession();
+  const loading = status === 'loading';
+  const router = useRouter();
+
+  const handleGithubLogin = async (e) => {
+    e.preventDefault();
+    setSigning(true);
+    await signIn('github');
+  };
+
+  useEffect(() => {
+    if (session && !loading) {
+      router.push('/');
+    }
+  }, [session, loading]);
+
   return (
     <div>
       <section className="h-screen py-10 lg:py-20 bg-green-600">
@@ -18,14 +38,15 @@ export default function Login() {
               </div>
               <form action="">
                 <div className="text-center">
-                  <Link
+                  <button
                     className="mt-8 mb-4 p-4 flex justify-center items-center border rounded hover:bg-gray-50"
-                    href="/">
+                    onClick={handleGithubLogin}>
                     <img className="mr-4 w-6" src="/github.svg" alt="" />
                     <span className="text-xs text-gray-500 font-bold">
-                      Sign In with your GitHub
+                      {!signing && 'Sign In with your GitHub'}
+                      {signing && 'Signing in ...'}
                     </span>
-                  </Link>
+                  </button>
                 </div>
               </form>
             </div>

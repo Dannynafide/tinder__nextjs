@@ -1,9 +1,12 @@
 import classNames from 'classnames';
+import {signOut, useSession} from 'next-auth/react';
 import Link from 'next/link';
 import {useState} from 'react';
 
 const Navigation = () => {
   const [isNavOpen, setNavOpen] = useState(false);
+  const {data: session, status} = useSession();
+  const loading = status === 'loading';
 
   return (
     <section className="container mx-auto">
@@ -31,11 +34,20 @@ const Navigation = () => {
             </Link>
           </li>
         </ul>
-        <Link
-          href="/login"
-          className="hidden lg:inline-block py-2 px-6 bg-green-500 hover:bg-green-600 text-sm text-white font-bold rounded-l-xl rounded-t-xl transition duration-200">
-          Sign in
-        </Link>
+        {!session && !loading && (
+          <Link
+            href="/login"
+            className="hidden lg:inline-block py-2 px-6 bg-green-500 hover:bg-green-600 text-sm text-white font-bold rounded-l-xl rounded-t-xl transition duration-200">
+            Sign in
+          </Link>
+        )}
+        {session && !loading && (
+          <Link
+            href="/"
+            className="hidden lg:inline-block py-2 px-6 bg-green-500 hover:bg-green-600 text-sm text-white font-bold rounded-l-xl rounded-t-xl transition duration-200">
+            {session.user.email}
+          </Link>
+        )}
       </nav>
       <div className={classNames(['navbar-menu', 'relative', 'z-50'], {hidden: !isNavOpen})}>
         <div className="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
@@ -72,11 +84,20 @@ const Navigation = () => {
           </div>
           <div className="mt-auto">
             <div className="pt-6">
-              <Link
-                href="/login"
-                className="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-green-600 hover:bg-green-700 rounded-l-xl rounded-t-xl">
-                Sign In
-              </Link>
+              {!session && !loading && (
+                <Link
+                  href="/login"
+                  className="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-green-600 hover:bg-green-700 rounded-l-xl rounded-t-xl">
+                  Sign In
+                </Link>
+              )}
+              {session && !loading && (
+                <button
+                  onClick={signOut}
+                  className="w-full block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-gray-500 hover:bg-green-700 rounded-l-xl rounded-t-xl">
+                  Logout
+                </button>
+              )}
             </div>
             <p className="my-4 text-xs text-center text-gray-400">
               <span>&copy; 2020 All rights reserved.</span>
