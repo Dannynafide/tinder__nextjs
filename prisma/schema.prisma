@@ -11,22 +11,25 @@ datasource db {
 }
 
 model Account {
-  id                String  @id @default(cuid())
+  id                String   @id @default(cuid())
   userId            String
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
+  refresh_token     String?  @db.Text
+  access_token      String?  @db.Text
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? @db.Text
+  id_token          String?  @db.Text
   session_state     String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @default(now())
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
+  @@map("accounts")
 }
 
 model Session {
@@ -35,6 +38,10 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @default(now())
+
+  @@map("sessions")
 }
 
 model User {
@@ -45,12 +52,90 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  skill         String?
+  timezone      String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @default(now())
+
+  filter          Filter?
+  profilesChecked ProfileCheck[] @relation("ProfilesChecked")
+  targetChecks    ProfileCheck[] @relation("TargetProfiles")
+
+  ConversationUser    ConversationUser[]
+  ConversationMessage ConversationMessage[]
+
+  @@map("users")
+}
+
+model Filter {
+  id       Int     @id @default(autoincrement())
+  skill    String?
+  timezone String?
+
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  @@map("filters")
+}
+
+model ProfileCheck {
+  id         Int      @id @default(autoincrement())
+  user       User     @relation("ProfilesChecked", fields: [userId], references: [id])
+  userId     String
+  targetUser User     @relation("TargetProfiles", fields: [targetId], references: [id])
+  targetId   String
+  liked      Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now())
+
+  @@map("profile_checks")
+}
+
+model Conversation {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  users    ConversationUser[]
+  messages ConversationMessage[]
+
+  @@map("conversations")
+}
+
+model ConversationUser {
+  id             Int          @id @default(autoincrement())
+  conversation   Conversation @relation(fields: [conversationId], references: [id])
+  conversationId Int
+  user           User         @relation(fields: [userId], references: [id])
+  userId         String
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @default(now())
+
+  @@map("conversation_users")
+}
+
+model ConversationMessage {
+  id             Int          @id @default(autoincrement())
+  content        String
+  conversation   Conversation @relation(fields: [conversationId], references: [id])
+  conversationId Int
+  user           User         @relation(fields: [userId], references: [id])
+  userId         String
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @default(now())
+
+  @@map("conversation_messages")
 }
 
 model VerificationToken {
   identifier String
   token      String   @unique
   expires    DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now())
 
   @@unique([identifier, token])
+  @@map("verification_tokens")
 }
