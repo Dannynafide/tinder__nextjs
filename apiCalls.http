@@ -1,4 +1,4 @@
-@sessionToken = next-auth.session-token=2d3089c6-1a0b-44f4-9013-362e7914b77a
+@sessionToken = next-auth.session-token=e1774f39-d757-4272-96d3-956ab804404d
 
 ###
 http://localhost:3000/api/hello
@@ -7,12 +7,32 @@ Cookie: {{sessionToken}}
 ###
 PUT http://localhost:3000/api/user/filter
 Cookie: {{sessionToken}}
+Content-Type: application/json
+
+{
+  "skill": "UI Designer",
+  "timezone": "GMT+2:00"
+}
+
+###
+PUT http://localhost:3000/api/user/profile
+Cookie: {{sessionToken}}
+Content-Type: application/json
+
+{
+  "skill": "Tester",
+  "timezone": "GMT+2:00"
+}
 
 ###
 GET http://localhost:3000/api/profiles
 Cookie: {{sessionToken}}
 
 ###
-PUT http://localhost:3000/api/profiles
+POST http://localhost:3000/api/profiles
 Content-Type: application/json
 Cookie: {{sessionToken}}
+
+{
+  "targetUserId": "clkcfsvx20001p336pydf71zb"
+}

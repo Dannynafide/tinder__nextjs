@@ -1,7 +1,7 @@
 import {user} from 'models';
 import {getServerSession} from 'next-auth/next';
 
-import {authOptions} from 'pages/api/auth/[...nextauth]';
+import {authOptions} from '@/pages/api/auth/[...nextauth]';
 
 const onlyAuth = (handler) => {
   return async (req, res) => {
