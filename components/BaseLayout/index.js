@@ -2,6 +2,19 @@ import classNames from 'classnames';
 import {signOut, useSession} from 'next-auth/react';
 import Link from 'next/link';
 import {useState} from 'react';
+import useSWR from 'swr';
+import apiRoutes from 'utils/apiRoutes';
+
+const ConnectionsLink = () => {
+  const {data, loading} = useSWR(`/api/conversations/`, apiRoutes.fetcher);
+
+  return (
+    <Link href="/connections" className="text-sm text-gray-400 hover:text-gray-500">
+      Connections
+      {!loading && data?.unread > 0 && ` (${data.unread})`}
+    </Link>
+  );
+};
 
 const Navigation = () => {
   const [isNavOpen, setNavOpen] = useState(false);
@@ -11,9 +24,10 @@ const Navigation = () => {
   return (
     <section className="container mx-auto">
       <nav className="relative px-6 py-6 flex justify-between items-center bg-white">
-        <Link className="text-3xl font-bold leading-none" href="/">
+        <Link href="/" className="text-3xl font-bold leading-none">
           MakersMatch
         </Link>
+
         <div className="lg:hidden">
           <button
             onClick={() => setNavOpen(true)}
@@ -29,9 +43,17 @@ const Navigation = () => {
         </div>
         <ul className="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
           <li>
-            <Link className="text-sm text-gray-400 hover:text-gray-500" href="/">
+            <Link href="/" className="text-sm text-gray-400 hover:text-gray-500">
               Start
             </Link>
+          </li>
+          <li>
+            <Link href="/profiles/browse" className="text-sm text-gray-400 hover:text-gray-500">
+              Browse
+            </Link>
+          </li>
+          <li>
+            <ConnectionsLink />
           </li>
         </ul>
         {!session && !loading && (

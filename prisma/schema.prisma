@@ -105,6 +105,7 @@ model ConversationUser {
   id             Int          @id @default(autoincrement())
   conversation   Conversation @relation(fields: [conversationId], references: [id])
   conversationId Int
+  read           Boolean      @default(false)
   user           User         @relation(fields: [userId], references: [id])
   userId         String
   createdAt      DateTime     @default(now())

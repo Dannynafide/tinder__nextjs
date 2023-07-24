@@ -36,3 +36,14 @@ Cookie: {{sessionToken}}
 {
   "targetUserId": "clkcfsvx20001p336pydf71zb"
 }
+
+
+###
+GET http://localhost:3000/api/conversations
+Content-Type: application/json
+Cookie: {{sessionToken}}
+
+###
+GET http://localhost:3000/api/conversations/1
+Content-Type: application/json
+Cookie: {{sessionToken}}
