@@ -1,7 +1,6 @@
-import {user} from 'models';
+import onlyAuth from 'middlewares/onlyAuth';
+const helloApi = async (req, res) => {
+  res.status(200).json({user: req.currentUser});
+};
 
-export default async function handler(req, res) {
-  const allUsers = await user.findMany();
-
-  res.status(200).json({allUsers});
-}
+export default onlyAuth(helloApi);
