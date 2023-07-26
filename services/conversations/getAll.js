@@ -1,13 +1,28 @@
-import {conversation} from '@/models';
+import {conversation} from 'models';
 
-export const getAll = ({userId}) =>
-  conversation.findMany({
+export const getAll = ({userId, page = 0, perPage = 7, searchTerm}) => {
+  let filters = {};
+  if (searchTerm) {
+    filters = {
+      ...filters,
+      messages: {
+        some: {
+          content: {
+            contains: searchTerm,
+            mode: 'insensitive'
+          }
+        }
+      }
+    };
+  }
+  return conversation.findMany({
     where: {
       users: {
         some: {
           userId
         }
-      }
+      },
+      ...filters
     },
     include: {
       users: {
@@ -23,5 +38,8 @@ export const getAll = ({userId}) =>
     },
     orderBy: {
       id: 'desc'
-    }
+    },
+    skip: page * perPage,
+    take: perPage
   });
+};

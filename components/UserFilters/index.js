@@ -30,7 +30,7 @@ const UserFilters = ({skills, timezones, currentUser}) => {
                 name="skill"
                 onBlur={updateFilter}
                 onChange={updateFilter}
-                defaultValue={currentUser?.filter.skill}>
+                defaultValue={currentUser?.filter?.skill}>
                 {skills.map((skill) => (
                   <option key={skill.id}>{skill.name}</option>
                 ))}
@@ -57,7 +57,7 @@ const UserFilters = ({skills, timezones, currentUser}) => {
                 name="timezone"
                 onBlur={updateFilter}
                 onChange={updateFilter}
-                defaultValue={currentUser?.filter.timezone}>
+                defaultValue={currentUser?.filter?.timezone}>
                 {timezones.map(({id, name}) => (
                   <option key={id}>{name}</option>
                 ))}

@@ -54,8 +54,6 @@ export default function ProfilePage({profile, skills, timezones}) {
   const [isOpen, setIsOpen] = useState(false);
   const [nextId, setNextId] = useState();
 
-  console.log('currentUser', currentUser);
-
   useEffect(() => {
     const fetchUser = async () => {
       const {
@@ -63,7 +61,6 @@ export default function ProfilePage({profile, skills, timezones}) {
       } = await apiRoutes.user.profile.get();
       setCurrentUser(user);
     };
-    console.log('aaa', fetchUser);
 
     if (session && !loading) {
       fetchUser();
@@ -98,6 +95,14 @@ export default function ProfilePage({profile, skills, timezones}) {
       window.location.replace('/profiles/browse');
     }
   };
+
+  if (!profile) {
+    return (
+      <BaseLayout>
+        <p>Loading...</p>
+      </BaseLayout>
+    );
+  }
 
   return (
     <BaseLayout>
@@ -139,7 +144,7 @@ export default function ProfilePage({profile, skills, timezones}) {
                 <div className="w-full lg:w-1/3">
                   <img
                     className="mb-5 lg:mb-0 w-full rounded-lg object-cover"
-                    style={{maxHeight: '350px;'}}
+                    style={{maxHeight: '350px'}}
                     src={profile.image}
                     alt=""
                   />

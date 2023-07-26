@@ -16,7 +16,8 @@ const apiRoutes = {
       update: (payload) => httpClient.put('/api/user/filter', payload)
     },
     profile: {
-      get: () => httpClient.get('/api/user/profile')
+      get: () => httpClient.get('/api/user/profile'),
+      update: (payload) => httpClient.put('/api/user/profile', payload)
     }
   },
   conversations: {

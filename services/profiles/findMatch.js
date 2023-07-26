@@ -21,7 +21,7 @@ export const findMatch = async ({userId}) => {
   });
 
   if (!filter) {
-    throw new Error('no_filter_set');
+    return null;
   }
 
   const ids = await checkedIds(userId);

@@ -5,11 +5,11 @@ import {useState} from 'react';
 import useSWR from 'swr';
 import apiRoutes from 'utils/apiRoutes';
 
-const ConnectionsLink = () => {
-  const {data, loading} = useSWR(`/api/conversations/`, apiRoutes.fetcher);
+const ConnectionsLink = ({isLoggedIn = false, className}) => {
+  const {data, loading} = useSWR(isLoggedIn ? `/api/conversations` : null, apiRoutes.fetcher);
 
   return (
-    <Link href="/connections" className="text-sm text-gray-400 hover:text-gray-500">
+    <Link href="/connections" className={className}>
       Connections
       {!loading && data?.unread > 0 && ` (${data.unread})`}
     </Link>
@@ -20,6 +20,10 @@ const Navigation = () => {
   const [isNavOpen, setNavOpen] = useState(false);
   const {data: session, status} = useSession();
   const loading = status === 'loading';
+
+  const handleLogout = async () => {
+    await signOut({callbackUrl: '/'});
+  };
 
   return (
     <section className="container mx-auto">
@@ -53,8 +57,25 @@ const Navigation = () => {
             </Link>
           </li>
           <li>
-            <ConnectionsLink />
+            <ConnectionsLink
+              isLoggedIn={session && !loading}
+              className="text-sm text-gray-400 hover:text-gray-500"
+            />
           </li>
+          {session && !loading && (
+            <li>
+              <Link href="/my-profile" className="text-sm text-gray-400 hover:text-gray-500">
+                My profile
+              </Link>
+            </li>
+          )}
+          {session && !loading && (
+            <li>
+              <button onClick={handleLogout} className="text-sm text-gray-400 hover:text-gray-500">
+                Logout
+              </button>
+            </li>
+          )}
         </ul>
         {!session && !loading && (
           <Link
@@ -97,11 +118,33 @@ const Navigation = () => {
             <ul>
               <li className="mb-1">
                 <Link
-                  className="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded"
-                  href="/">
+                  href="/"
+                  className="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded">
                   Start
                 </Link>
               </li>
+              <li className="mb-1">
+                <Link
+                  href="/profiles/browse"
+                  className="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded">
+                  Browse
+                </Link>
+              </li>
+              <li className="mb-1">
+                <ConnectionsLink
+                  isLoggedIn={session && !loading}
+                  className="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded"
+                />
+              </li>
+              {session && !loading && (
+                <li className="mb-1">
+                  <Link
+                    href="/my-profile"
+                    className="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded">
+                    My profile
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
           <div className="mt-auto">
@@ -115,7 +158,9 @@ const Navigation = () => {
               )}
               {session && !loading && (
                 <button
-                  onClick={signOut}
+                  onClick={() => {
+                    signOut({callbackUrl: '/'});
+                  }}
                   className="w-full block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-gray-500 hover:bg-green-700 rounded-l-xl rounded-t-xl">
                   Logout
                 </button>
@@ -130,7 +175,6 @@ const Navigation = () => {
     </section>
   );
 };
-
 const Footer = () => {
   return (
     <section>

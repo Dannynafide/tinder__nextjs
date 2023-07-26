@@ -185,6 +185,67 @@ const createConversation = async (users) => {
   });
 };
 
+const createConversations = async (mainUserId) => {
+  let userIds = await prisma.user.findMany({
+    where: {
+      NOT: {id: mainUserId}
+    },
+    select: {id: true}
+  });
+  userIds = userIds.map((el) => el.id);
+
+  const chats = [];
+  for (let i = 0; i < 35; i++) {
+    const randomId = userIds[Math.floor(Math.random() * userIds.length)];
+    chats.push(
+      prisma.conversation.create({
+        data: {
+          users: {
+            create: [
+              {
+                user: {
+                  connect: {
+                    id: randomId
+                  }
+                }
+              },
+              {
+                user: {
+                  connect: {
+                    id: mainUserId
+                  }
+                }
+              }
+            ]
+          },
+          messages: {
+            create: [
+              {
+                content: 'Hi how are you?',
+                user: {
+                  connect: {
+                    id: randomId
+                  }
+                }
+              },
+              {
+                content: 'Im fine thanks!',
+                user: {
+                  connect: {
+                    id: mainUserId
+                  }
+                }
+              }
+            ]
+          }
+        }
+      })
+    );
+  }
+
+  await Promise.all(chats);
+};
+
 async function main() {
   await createSkills();
   await createTimezones();
@@ -192,6 +253,7 @@ async function main() {
   await createFilters();
   const [bob, alice] = await createUsersToConversation();
   await createConversation([bob, alice]);
+  await createConversations('clkgnp1a10000p3n2ygyp6xqh');
 }
 
 main()
