@@ -102,12 +102,13 @@ export default function Connections({conversations, pagesCount, page, filters}) 
               <div className="cursor-pointer flex flex-row py-4 px-2 justify-center items-center border-b-2">
                 <div className="w-1/4">
                   {item.users.map(({user}) => (
-                    <img
-                      key={user.id}
-                      src={user.image}
-                      className="inline-block m-0.5 object-cover h-12 w-12 rounded-full"
-                      alt=""
-                    />
+                    <picture key={user.id}>
+                      <img
+                        src={user.image}
+                        className="inline-block m-0.5 object-cover h-12 w-12 rounded-full"
+                        alt="avatar"
+                      />
+                    </picture>
                   ))}
                 </div>
                 <div className="w-full">

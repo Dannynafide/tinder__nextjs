@@ -41,13 +41,17 @@ const MyMessage = ({message}) => (
     <div className="mr-2 py-3 px-4 bg-blue-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white">
       {message.content}
     </div>
-    <img src={message.user.image} className="object-cover h-8 w-8 rounded-full" alt="" />
+    <picture>
+      <img src={message.user.image} className="object-cover h-8 w-8 rounded-full" alt="avatar" />
+    </picture>
   </div>
 );
 
 const Message = ({message}) => (
   <div className="flex justify-start mb-4">
-    <img src={message.user.image} className="object-cover h-8 w-8 rounded-full" alt="" />
+    <picture>
+      <img src={message.user.image} className="object-cover h-8 w-8 rounded-full" alt="" />
+    </picture>
     <div className="ml-2 py-3 px-4 bg-gray-400 rounded-br-3xl rounded-tr-3xl rounded-tl-xl text-white">
       {message.content}
     </div>
@@ -93,7 +97,7 @@ export default function Connections({initConversation, currentUser}) {
 
   return (
     <BaseLayout>
-      <div className="w-full px-5 flex flex-col justify-between bg-gree">
+      <div className="w-full px-5 flex flex-col justify-between bg-pink">
         <div className="flex flex-col mt-5">
           {conversation.messages.map((message) => {
             if (message.user.id === currentUser.id) {
