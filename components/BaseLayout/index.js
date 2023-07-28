@@ -29,7 +29,7 @@ const Navigation = () => {
     <section className="container mx-auto">
       <nav className="relative px-6 py-6 flex justify-between items-center bg-white">
         <Link href="/" className="text-3xl font-bold leading-none">
-          MakersMatch
+          TinderMatch
         </Link>
 
         <div className="lg:hidden">
@@ -97,7 +97,7 @@ const Navigation = () => {
         <nav className="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto">
           <div className="flex items-center mb-8">
             <Link className="mr-auto text-3xl font-bold leading-none" href="/">
-              MakersMatch
+              TinderMatch
             </Link>
             <button onClick={() => setNavOpen(false)} className="navbar-close">
               <svg
@@ -167,7 +167,7 @@ const Navigation = () => {
               )}
             </div>
             <p className="my-4 text-xs text-center text-gray-400">
-              <span>&copy; 2020 All rights reserved.</span>
+              <span>&copy; 2023 All rights reserved.</span>
             </p>
           </div>
         </nav>
@@ -197,7 +197,7 @@ const Footer = () => {
       <div className="py-20 radius-for-skewed">
         <div className="max-w-md mx-auto text-center">
           <p className="mb-6 text-sm font-semibold text-gray-400">
-            &copy; 2021. All rights reserved.
+            &copy; 2023. All rights reserved.
           </p>
         </div>
       </div>
