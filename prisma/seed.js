@@ -247,13 +247,13 @@ const createConversations = async (mainUserId) => {
 };
 
 async function main() {
-  await createSkills();
-  await createTimezones();
-  await createUsers();
-  await createFilters();
-  const [bob, alice] = await createUsersToConversation();
-  await createConversation([bob, alice]);
-  await createConversations('clkgnp1a10000p3n2ygyp6xqh');
+  // await createSkills();
+  // await createTimezones();
+  // await createUsers();
+  // await createFilters();
+  // const [bob, alice] = await createUsersToConversation();
+  // await createConversation([bob, alice]);
+  // await createConversations('clkgnp1a10000p3n2ygyp6xqh');
 }
 
 main()
