@@ -63,7 +63,7 @@ const MatchModal = ({handleClose, isOpen}) => {
               </div>
               <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                 <h3 className="text-lg leading-6 font-medium text-gray-900" id="modal-title">
-                  Congrats, you have a new match!{' '}
+                  Congrats, you have a new match!
                   <span role="img" aria-label="celebrate emoji">
                     🥳
                   </span>
@@ -81,7 +81,7 @@ const MatchModal = ({handleClose, isOpen}) => {
             <Link href="/connections">
               <button
                 type="button"
-                className="w-full cursor-pointer inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
+                className="w-full cursor-pointer inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-pink-600 text-base font-medium text-white hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 sm:ml-3 sm:w-auto sm:text-sm">
                 Start a chat
               </button>
             </Link>
