@@ -29,8 +29,8 @@ export const findMatch = async ({userId}) => {
     where: {
       sex: filter.sex,
       age: {
-        gte: filter.ageFrom,
-        lte: filter.ageUpTo
+        gte: filter.ageFrom ?? 1,
+        lte: filter.ageUpTo ?? 1
       },
       NOT: {
         id: {in: [...ids, userId]}
