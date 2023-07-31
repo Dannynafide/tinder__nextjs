@@ -6,8 +6,8 @@ export const updateProfile = async ({userId, payload}) =>
       id: userId
     },
     data: {
-      skill: payload.skill,
-      timezone: payload.timezone,
+      age: payload.age,
+      sex: payload.sex,
       updatedAt: new Date()
     }
   });

@@ -6,8 +6,6 @@ import UserFilters from '@/components/UserFilters';
 import {user} from '@/models';
 import {authOptions} from '@/pages/api/auth/[...nextauth]';
 import {findMatch} from '@/services/profiles/findMatch';
-import getAllSkills from '@/services/skills/getAll';
-import getAllTimezones from '@/services/timezones/getAll';
 
 export const getServerSideProps = async ({req, res}) => {
   const session = await getServerSession(req, res, authOptions);
@@ -30,13 +28,13 @@ export const getServerSideProps = async ({req, res}) => {
       email: true,
       filter: {
         select: {
-          skill: true,
-          timezone: true
+          sex: true,
+          ageFrom: true,
+          ageUpTo: true
         }
       }
     }
   });
-
   const profile = await findMatch({userId: currentUser.id});
 
   if (profile) {
@@ -48,21 +46,18 @@ export const getServerSideProps = async ({req, res}) => {
     };
   }
 
-  const skills = await getAllSkills();
-  const timezones = await getAllTimezones();
-
   return {
-    props: {skills, timezones, currentUser}
+    props: {currentUser}
   };
 };
 
-const BrowseProfiles = ({skills, timezones, currentUser}) => {
+const BrowseProfiles = ({currentUser}) => {
   return (
     <BaseLayout>
       <Head>
         <title>Browse profiles</title>
       </Head>
-      <UserFilters skills={skills} timezones={timezones} currentUser={currentUser} />
+      <UserFilters currentUser={currentUser} />
       <p className="text-center mt-10 text-2xl">
         Unfortunately we do not have more profiles at the moment. <br />
         Please change your filter and try again...

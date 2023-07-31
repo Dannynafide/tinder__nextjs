@@ -27,10 +27,13 @@ export const findMatch = async ({userId}) => {
   const ids = await checkedIds(userId);
   const profile = await user.findFirst({
     where: {
-      skill: filter.skill,
-      timezone: filter.timezone,
+      sex: filter.sex,
+      age: {
+        gte: filter.ageFrom,
+        lte: filter.ageUpTo
+      },
       NOT: {
-        id: {in: ids}
+        id: {in: [...ids, userId]}
       }
     }
   });

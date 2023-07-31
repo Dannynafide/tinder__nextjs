@@ -7,8 +7,6 @@ import BaseLayout from '@/components/BaseLayout';
 import MatchModal from '@/components/MatchModal';
 import UserFilters from '@/components/UserFilters';
 import {user} from '@/models';
-import getAllSkills from '@/services/skills/getAll';
-import getAllTimezones from '@/services/timezones/getAll';
 import apiRoutes from '@/utils/apiRoutes';
 
 export const getStaticPaths = async () => {
@@ -28,20 +26,15 @@ export const getStaticProps = async ({params}) => {
     select: {
       id: true,
       name: true,
-      skill: true,
-      timezone: true,
+      age: true,
+      sex: true,
       image: true
     }
   });
 
-  const skills = await getAllSkills();
-  const timezones = await getAllTimezones();
-
   return {
     props: {
-      profile,
-      skills,
-      timezones
+      profile
     }
   };
 };
@@ -142,29 +135,32 @@ export default function ProfilePage({profile, skills, timezones}) {
             <div className="max-w-6xl mx-auto">
               <div className="mb-8 p-6 flex flex-wrap items-center bg-white rounded-lg shadow">
                 <div className="w-full lg:w-1/3">
-                  <img
-                    className="mb-5 lg:mb-0 w-full rounded-lg object-cover"
-                    style={{maxHeight: '350px'}}
-                    src={profile.image}
-                    alt=""
-                  />
+                  <picture>
+                    <img
+                      className="mb-5 lg:mb-0 w-full rounded-lg object-cover"
+                      style={{maxHeight: '350px'}}
+                      src={profile.image}
+                      alt=""
+                    />
+                  </picture>
                 </div>
                 <div className="w-full lg:w-2/3">
                   <div className="max-w-lg mx-auto">
                     <p className="mb-8 text-2xl text-gray-500">
-                      What i created?
+                      What I like?
                       <br />
-                      🧑🏼‍💻 Daily To-do App
+                      🧑🏼‍💻 I like programming in React.
                       <br />
-                      🔗 RemoteAwesome.com
+                      🔗 Help with open source projects.
                       <br />
-                      📺 Design&Code channel
+                      📺 I like watching news podcasts.
                       <br />
                     </p>
                     <div className="flex items-center justify-between">
                       <div>
                         <h4 className="text-2xl font-bold font-heading">{profile.name}</h4>
-                        <p className="text-blueGrey-500">{profile.skill}</p>
+                        <p className="text-blueGrey-500">Sex: {profile.sex}</p>
+                        <p className="text-blueGrey-500">Age: {profile.age}</p>
                       </div>
                     </div>
                   </div>
@@ -182,7 +178,7 @@ export default function ProfilePage({profile, skills, timezones}) {
               Skip
             </button>
             <button
-              className="w-1/2 h-16 flex items-center justify-center rounded-md border bg-green-500 text-white border-gray-300"
+              className="w-1/2 h-16 flex items-center justify-center rounded-md border bg-purple-500 text-white border-gray-300"
               type="button"
               onClick={handleLike}>
               Connect

@@ -6,13 +6,15 @@ export const upsertFilter = ({userId, payload}) =>
       userId
     },
     update: {
-      skill: payload.skill,
-      timezone: payload.timezone,
+      sex: payload.sex,
+      ageFrom: payload.ageFrom,
+      ageUpTo: payload.ageUpTo,
       updatedAt: new Date()
     },
     create: {
-      skill: payload.skill,
-      timezone: payload.timezone,
+      sex: payload.sex,
+      ageFrom: payload.ageFrom,
+      ageUpTo: payload.ageUpTo,
       user: {
         connect: {
           id: userId
