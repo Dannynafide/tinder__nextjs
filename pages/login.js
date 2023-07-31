@@ -8,6 +8,7 @@ export default function Login() {
   const {data: session, status} = useSession();
   const loading = status === 'loading';
   const router = useRouter();
+  const [startedRouterPush, setStartedRouterPush] = useState(false);
 
   const handleGithubLogin = async (e) => {
     e.preventDefault();
@@ -17,13 +18,15 @@ export default function Login() {
 
   useEffect(() => {
     if (session && !loading) {
+      if (startedRouterPush) return;
       router.push('/');
+      setStartedRouterPush(true);
     }
-  }, [session, loading]);
+  }, [session, loading, startedRouterPush, router]);
 
   return (
     <div>
-      <section className="h-screen py-10 lg:py-20 bg-green-600">
+      <section className="h-screen py-10 lg:py-20 bg-purple-500">
         <div className="container mx-auto px-4">
           <div className="max-w-xl mx-auto">
             <div className="mb-10 text-center ">
@@ -41,7 +44,9 @@ export default function Login() {
                   <button
                     className="mt-8 mb-4 p-4 flex justify-center items-center border rounded hover:bg-gray-50"
                     onClick={handleGithubLogin}>
-                    <img className="mr-4 w-6" src="/github.svg" alt="" />
+                    <picture>
+                      <img className="mr-4 w-6" src="/github.svg" alt="" />
+                    </picture>
                     <span className="text-xs text-gray-500 font-bold">
                       {!signing && 'Sign In with your GitHub'}
                       {signing && 'Signing in ...'}
