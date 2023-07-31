@@ -10,7 +10,7 @@ export const NavigationBar = ({setNavOpen, handleLogout}) => {
   return (
     <nav className="relative px-6 py-6 flex justify-between items-center bg-white">
       <Link href="/" className="text-3xl font-bold leading-none">
-        TinderMatch
+        Tinder
       </Link>
 
       <div className="lg:hidden">
