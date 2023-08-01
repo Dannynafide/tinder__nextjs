@@ -34,9 +34,9 @@ Docker.
 ## Illustrations
 
 <p float="center">
-  <img alt="Home page" src="./photoToREADME/home.png" width="45%" height="45%" /> &nbsp;
-  <img alt="Home page" src="./photoToREADME/browse.png" width="45%" height="45%" />
+  <img src="./photoToREADME/home.png" width="45%" height="45%" style="border: 1px solid black"/> &nbsp;
+  <img src="./photoToREADME/browse.png" width="45%" height="45%" style="border: 1px solid black"/>
   <br/><br/>
-  <img alt="Home page" src="./photoToREADME/connections.png" width="45%" height="45%" /> &nbsp;
-  <img alt="Home page" src="./photoToREADME/myProfile.png" width="45%" height="45%" />
+  <img src="./photoToREADME/connections.png" width="45%" height="45%" style="border: 1px solid black"/> &nbsp;
+  <img src="./photoToREADME/myProfile.png" width="45%" height="45%" style="border: 1px solid black"/>
 </p>
