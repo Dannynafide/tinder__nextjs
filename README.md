@@ -1,48 +1,40 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with
-[`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Tinder APP
 
-## Getting Started
+## General info
 
-First, run the development server:
+The project created using the latest libraries to learn Next.js well. PostgreSQL database built in
+Docker.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Technologies
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- ReactJS 18.2
+- Next.js 13.4 (+ SWR)
+- NextAuth.js 4.22
+- Prisma 5.0
+- Axios 1.4
+- Tailwind CSS 3.3
+- PostgreSQL 15.0
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the
-file.
+## Website
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on
-[http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in
-`pages/api/hello.js`.
+[Tinder APP - website](https://tinder-nextjs-alpha.vercel.app/)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as
-[API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to
-automatically optimize and load Inter, a custom Google Font.
+- Add a new account using github.
+- Change the user's age and gender.
+- Search engine for people by gender and age.
+- If 2 people like each other, then they can write to each other.
+- Write messages to each other.
+- Message search (filtering records)
+- Pagination
+- Environment created in Docker
+- Deploy on Vercel
 
-## Learn More
+## Illustrations
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your
-feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the
-[Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
-from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more
-details.
+<img alt="Home page" src="./photoToREADME/home.png" width="45%" height="45%" />
+<img alt="Home page" src="./photoToREADME/browse.png" width="45%" height="45%" />
+<br/><br/>
+<img alt="Home page" src="./photoToREADME/connections.png" width="45%" height="45%" />
+<img alt="Home page" src="./photoToREADME/myProfile.png" width="45%" height="45%" />
