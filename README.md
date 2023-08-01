@@ -33,8 +33,10 @@ Docker.
 
 ## Illustrations
 
-<img alt="Home page" src="./photoToREADME/home.png" width="45%" height="45%" />
-<img alt="Home page" src="./photoToREADME/browse.png" width="45%" height="45%" />
-<br/><br/>
-<img alt="Home page" src="./photoToREADME/connections.png" width="45%" height="45%" />
-<img alt="Home page" src="./photoToREADME/myProfile.png" width="45%" height="45%" />
+<p float="center">
+  <img alt="Home page" src="./photoToREADME/home.png" width="45%" height="45%" /> &nbsp;
+  <img alt="Home page" src="./photoToREADME/browse.png" width="45%" height="45%" />
+  <br/><br/>
+  <img alt="Home page" src="./photoToREADME/connections.png" width="45%" height="45%" /> &nbsp;
+  <img alt="Home page" src="./photoToREADME/myProfile.png" width="45%" height="45%" />
+</p>
